@@ -8,7 +8,6 @@ techstacks:
     iconUrl: "https://cdn.simpleicons.org/nodedotjs"
   - name: PostgreSQL
     iconUrl: "https://cdn.simpleicons.org/postgresql"
-    
 iconUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
 sharedVariable:
   ENVIRONMENT: "production"
