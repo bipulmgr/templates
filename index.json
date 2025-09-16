@@ -11,7 +11,8 @@
       "frontend",
       "backend",
       "database"
-    ]
+    ],
+    "filename": "fullstack-starter.yml"
   },
   {
     "name": "Microservices Architecture",
@@ -30,6 +31,7 @@
       "user-service",
       "mongodb",
       "redis"
-    ]
+    ],
+    "filename": "microservices.yml"
   }
 ]
