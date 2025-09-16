@@ -19,5 +19,40 @@
       "database"
     ],
     "filename": "fullstack-starter.yml"
+  },
+  {
+    "name": "Microservices Architecture",
+    "techstacks": [
+      {
+        "name": "Node.js",
+        "iconUrl": "https://cdn.simpleicons.org/nodedotjs"
+      },
+      {
+        "name": "Express",
+        "iconUrl": "https://cdn.simpleicons.org/express"
+      },
+      {
+        "name": "MongoDB",
+        "iconUrl": "https://cdn.simpleicons.org/mongodb"
+      },
+      {
+        "name": "Redis",
+        "iconUrl": "https://cdn.simpleicons.org/redis"
+      },
+      {
+        "name": "Nginx",
+        "iconUrl": "https://cdn.simpleicons.org/nginx"
+      }
+    ],
+    "description": "Complete microservices setup with API Gateway, Auth Service, and User Service.",
+    "iconUrl": "https://ui-avatars.com/api/?name=Microservices+Architecture",
+    "services": [
+      "api-gateway",
+      "auth-service",
+      "user-service",
+      "mongodb",
+      "redis"
+    ],
+    "filename": "microservices.yml"
   }
 ]
