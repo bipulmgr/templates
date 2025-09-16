@@ -54,17 +54,12 @@ jobs:
                 # Extract service names
                 services = list(content.get('services', {}).keys())
                 
-                # Generate usage command
-                filename = os.path.basename(file_path)
-                usage = f"docker-compose -f templates/{filename} up"
-                
                 return {
                     'name': name,
                     'techstack': techstack,
                     'description': description,
                     'iconUrl': image_url,
-                    'services': services,
-                    'usage': usage
+                    'services': services
                 }
                 
             except Exception as e:
