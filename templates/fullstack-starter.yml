@@ -42,7 +42,7 @@ services:
 
   database:
     type: Database
-    order: 0
+    order: 3
     iconUrl: "https://ui-avatars.com/api/?name=Database"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     volumes:
