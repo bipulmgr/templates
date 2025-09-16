@@ -54,12 +54,16 @@ jobs:
                 # Extract service names
                 services = list(content.get('services', {}).keys())
                 
+                # Get filename
+                filename = os.path.basename(file_path)
+                
                 return {
                     'name': name,
                     'techstack': techstack,
                     'description': description,
                     'iconUrl': image_url,
-                    'services': services
+                    'services': services,
+                    'filename': filename
                 }
                 
             except Exception as e:

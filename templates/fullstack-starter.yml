@@ -8,7 +8,7 @@ techstack:
   - PostgreSQL
 imageUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
 sharedVariable:
-  ENVIRONMENT: "development"
+  ENVIRONMENT: "production"
   TIMEZONE: "UTC"
 
 services:
