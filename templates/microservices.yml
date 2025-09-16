@@ -5,11 +5,16 @@ name: "Microservices Architecture"
 description: "Complete microservices setup with API Gateway, Auth Service, and User Service."
 techstack:
   - Node.js
+    iconUrl: "https://cdn.simpleicons.org/nodedotjs"
   - Express
+    iconUrl: "https://cdn.simpleicons.org/express"
   - MongoDB
+    iconUrl: "https://cdn.simpleicons.org/mongodb"
   - Redis
+    iconUrl: "https://cdn.simpleicons.org/redis"
   - Nginx
-imageUrl: "https://example.com/microservices-logo.png"
+    iconUrl: "https://cdn.simpleicons.org/nginx"
+iconUrl: "https://ui-avatars.com/api/?name=Microservices+Architecture"
 sharedVariable:
   ENVIRONMENT: "production"
   LOG_LEVEL: "info"

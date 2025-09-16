@@ -48,7 +48,7 @@ jobs:
                 # Extract required fields
                 name = content.get('name', 'Unknown Template')
                 description = content.get('description', 'No description available')
-                techstack = content.get('techstack', [])
+                techstacks = content.get('techstacks', [])
                 iconUrl = content.get('iconUrl', '')
                 
                 # Extract service names
@@ -59,7 +59,7 @@ jobs:
                 
                 return {
                     'name': name,
-                    'techstack': techstack,
+                    'techstacks': techstacks,
                     'description': description,
                     'iconUrl': iconUrl,
                     'services': services,

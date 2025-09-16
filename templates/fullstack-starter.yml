@@ -3,9 +3,12 @@ version: "3.9"
 # 🔹 Main group metadata
 name: "Employee Management System"
 description: "Employee Management System with frontend, backend, and database."
-techstack:
-  - Node.js
-  - PostgreSQL
+techstacks:
+  - name: Node.js
+    iconUrl: "https://cdn.simpleicons.org/nodedotjs"
+  - name: PostgreSQL
+    iconUrl: "https://cdn.simpleicons.org/postgresql"
+    
 iconUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
 sharedVariable:
   ENVIRONMENT: "production"
