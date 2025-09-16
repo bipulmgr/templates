@@ -1,9 +1,15 @@
 [
   {
     "name": "Employee Management System",
-    "techstack": [
-      "Node.js",
-      "PostgreSQL"
+    "techstacks": [
+      {
+        "name": "Node.js",
+        "iconUrl": "https://cdn.simpleicons.org/nodedotjs"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconUrl": "https://cdn.simpleicons.org/postgresql"
+      }
     ],
     "description": "Employee Management System with frontend, backend, and database.",
     "iconUrl": "https://ui-avatars.com/api/?name=Employee+Management+System",
@@ -13,25 +19,5 @@
       "database"
     ],
     "filename": "fullstack-starter.yml"
-  },
-  {
-    "name": "Microservices Architecture",
-    "techstack": [
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Redis",
-      "Nginx"
-    ],
-    "description": "Complete microservices setup with API Gateway, Auth Service, and User Service.",
-    "iconUrl": "",
-    "services": [
-      "api-gateway",
-      "auth-service",
-      "user-service",
-      "mongodb",
-      "redis"
-    ],
-    "filename": "microservices.yml"
   }
 ]
