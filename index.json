@@ -14,5 +14,25 @@
       "database"
     ],
     "usage": "docker-compose -f templates/fullstack-starter.yml up"
+  },
+  {
+    "name": "Microservices Architecture",
+    "techstack": [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Redis",
+      "Nginx"
+    ],
+    "description": "Complete microservices setup with API Gateway, Auth Service, and User Service.",
+    "iconUrl": "https://example.com/microservices-logo.png",
+    "services": [
+      "api-gateway",
+      "auth-service",
+      "user-service",
+      "mongodb",
+      "redis"
+    ],
+    "usage": "docker-compose -f templates/microservices.yml up"
   }
 ]
