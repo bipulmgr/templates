@@ -6,7 +6,7 @@ description: "Employee Management System with frontend, backend, and database."
 techstack:
   - Node.js
   - PostgreSQL
-imageUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
+iconUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
 sharedVariable:
   ENVIRONMENT: "production"
   TIMEZONE: "UTC"
@@ -16,7 +16,7 @@ services:
     type: Application
     order: 1
     serviceUrl: "https://github.com/sursatech/employee-info-app.git"
-    imageUrl: "https://ui-avatars.com/api/?name=Frontend"
+    iconUrl: "https://ui-avatars.com/api/?name=Frontend"
     ports:
       - "3000:3000"
     buildConfig:
@@ -31,7 +31,7 @@ services:
     type: Application
     order: 2
     serviceUrl: "https://github.com/sursatech/employee-info-api.git"
-    imageUrl: "https://ui-avatars.com/api/?name=Backend"
+    iconUrl: "https://ui-avatars.com/api/?name=Backend"
     buildConfig:
       packages:
         - "nodejs"
@@ -43,7 +43,7 @@ services:
   database:
     type: Database
     order: 0
-    imageUrl: "https://ui-avatars.com/api/?name=Database"
+    iconUrl: "https://ui-avatars.com/api/?name=Database"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     volumes:
       - db-data:/var/lib/postgresql/data

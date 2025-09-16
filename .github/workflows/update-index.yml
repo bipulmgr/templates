@@ -49,7 +49,7 @@ jobs:
                 name = content.get('name', 'Unknown Template')
                 description = content.get('description', 'No description available')
                 techstack = content.get('techstack', [])
-                image_url = content.get('imageUrl', '')
+                iconUrl = content.get('iconUrl', '')
                 
                 # Extract service names
                 services = list(content.get('services', {}).keys())
@@ -61,7 +61,7 @@ jobs:
                     'name': name,
                     'techstack': techstack,
                     'description': description,
-                    'iconUrl': image_url,
+                    'iconUrl': iconUrl,
                     'services': services,
                     'filename': filename
                 }
