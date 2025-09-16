@@ -24,7 +24,7 @@
       "Nginx"
     ],
     "description": "Complete microservices setup with API Gateway, Auth Service, and User Service.",
-    "iconUrl": "https://example.com/microservices-logo.png",
+    "iconUrl": "",
     "services": [
       "api-gateway",
       "auth-service",
