@@ -3,16 +3,16 @@ version: "3.9"
 # 🔹 Main group metadata
 name: "Microservices Architecture"
 description: "Complete microservices setup with API Gateway, Auth Service, and User Service."
-techstack:
-  - Node.js
+techstacks:
+  - name: Node.js
     iconUrl: "https://cdn.simpleicons.org/nodedotjs"
-  - Express
+  - name: Express
     iconUrl: "https://cdn.simpleicons.org/express"
-  - MongoDB
+  - name: MongoDB
     iconUrl: "https://cdn.simpleicons.org/mongodb"
-  - Redis
+  - name: Redis
     iconUrl: "https://cdn.simpleicons.org/redis"
-  - Nginx
+  - name: Nginx
     iconUrl: "https://cdn.simpleicons.org/nginx"
 iconUrl: "https://ui-avatars.com/api/?name=Microservices+Architecture"
 sharedVariable:
