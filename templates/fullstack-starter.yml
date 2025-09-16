@@ -1,13 +1,12 @@
 version: "3.9"
 
 # 🔹 Main group metadata
-name: "My Fullstack Starter"
-description: "Starter package with frontend, backend, and database."
+name: "Employee Management System"
+description: "Employee Management System with frontend, backend, and database."
 techstack:
-  - Angular
-  - .NET Core
+  - Node.js
   - PostgreSQL
-imageUrl: "https://example.com/project-logo.png"
+imageUrl: "https://ui-avatars.com/api/?name=Employee+Management+System"
 sharedVariable:
   ENVIRONMENT: "development"
   TIMEZONE: "UTC"
@@ -16,65 +15,42 @@ services:
   frontend:
     type: Application
     order: 1
-    serviceUrl: "https://example.com/frontend.zip"
-    imageUrl: "https://example.com/frontend.png"
-    image: node:18
+    serviceUrl: "https://github.com/sursatech/employee-info-app.git"
+    imageUrl: "https://ui-avatars.com/api/?name=Frontend"
     ports:
-      - "8080:80"
-    networks:
-      - front-tier
+      - "3000:3000"
     buildConfig:
       packages:
-        - "@angular/cli"
-      aptPackages:
-        - git
+        - "nodejs"
       installCommand: "npm install"
-      startCommand: "npm start"
+      startCommand: "npm run start"
       ports:
-        - 8080
+        - 3000
 
   backend:
     type: Application
     order: 2
-    serviceUrl: "https://example.com/backend.zip"
-    imageUrl: "https://example.com/backend.png"
-    image: mcr.microsoft.com/dotnet/aspnet:8.0
-    networks:
-      - back-tier
+    serviceUrl: "https://github.com/sursatech/employee-info-api.git"
+    imageUrl: "https://ui-avatars.com/api/?name=Backend"
     buildConfig:
       packages:
-        - "EntityFramework"
-      aptPackages:
-        - curl
-      installCommand: "dotnet restore"
-      startCommand: "dotnet run --urls http://+:5000"
+        - "nodejs"
+      installCommand: "npm install"
+      startCommand: "npm run start"
       ports:
-        - 5000
+        - 3000
 
   database:
     type: Database
     order: 0
-    serviceUrl: "https://example.com/postgres.sql"
-    imageUrl: "https://example.com/postgres.png"
-    image: postgres:16
+    imageUrl: "https://ui-avatars.com/api/?name=Database"
+    image: ghcr.io/railwayapp-templates/postgres-ssl:16
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    networks:
-      - back-tier
-    buildConfig:
-      packages: []
-      aptPackages: []
-      installCommand: ""
-      startCommand: "postgres"
-      ports:
-        - 5432
-
-volumes:
-  db-data:
-
-networks:
-  front-tier: {}
-  back-tier: {}
+      POSTGRES_USER=user
+      POSTGRES_PASSWORD=password
+      POSTGRES_PORT=5432
+      POSTGRES_DB=employee_info
+      POSTGRES_SSL=true
+      POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
