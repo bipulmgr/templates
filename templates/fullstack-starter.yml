@@ -1,0 +1,80 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "My Fullstack Starter"
+description: "Starter package with frontend, backend, and database."
+techstack:
+  - Angular
+  - .NET Core
+  - PostgreSQL
+imageUrl: "https://example.com/project-logo.png"
+sharedVariable:
+  ENVIRONMENT: "development"
+  TIMEZONE: "UTC"
+
+services:
+  frontend:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/frontend.zip"
+    imageUrl: "https://example.com/frontend.png"
+    image: node:18
+    ports:
+      - "8080:80"
+    networks:
+      - front-tier
+    buildConfig:
+      packages:
+        - "@angular/cli"
+      aptPackages:
+        - git
+      installCommand: "npm install"
+      startCommand: "npm start"
+      ports:
+        - 8080
+
+  backend:
+    type: Application
+    order: 2
+    serviceUrl: "https://example.com/backend.zip"
+    imageUrl: "https://example.com/backend.png"
+    image: mcr.microsoft.com/dotnet/aspnet:8.0
+    networks:
+      - back-tier
+    buildConfig:
+      packages:
+        - "EntityFramework"
+      aptPackages:
+        - curl
+      installCommand: "dotnet restore"
+      startCommand: "dotnet run --urls http://+:5000"
+      ports:
+        - 5000
+
+  database:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/postgres.sql"
+    imageUrl: "https://example.com/postgres.png"
+    image: postgres:16
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      - back-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "postgres"
+      ports:
+        - 5432
+
+volumes:
+  db-data:
+
+networks:
+  front-tier: {}
+  back-tier: {}

@@ -1,0 +1,127 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "Microservices Architecture"
+description: "Complete microservices setup with API Gateway, Auth Service, and User Service."
+techstack:
+  - Node.js
+  - Express
+  - MongoDB
+  - Redis
+  - Nginx
+imageUrl: "https://example.com/microservices-logo.png"
+sharedVariable:
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "info"
+
+services:
+  api-gateway:
+    type: Gateway
+    order: 1
+    serviceUrl: "https://example.com/api-gateway.zip"
+    imageUrl: "https://example.com/nginx.png"
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - gateway-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "nginx -g 'daemon off;'"
+      ports:
+        - 80
+        - 443
+
+  auth-service:
+    type: Application
+    order: 2
+    serviceUrl: "https://example.com/auth-service.zip"
+    imageUrl: "https://example.com/nodejs.png"
+    image: node:18-alpine
+    ports:
+      - "3001:3001"
+    networks:
+      - services-tier
+    buildConfig:
+      packages:
+        - "express"
+        - "jsonwebtoken"
+        - "bcryptjs"
+      aptPackages:
+        - curl
+      installCommand: "npm install"
+      startCommand: "npm start"
+      ports:
+        - 3001
+
+  user-service:
+    type: Application
+    order: 3
+    serviceUrl: "https://example.com/user-service.zip"
+    imageUrl: "https://example.com/nodejs.png"
+    image: node:18-alpine
+    ports:
+      - "3002:3002"
+    networks:
+      - services-tier
+    buildConfig:
+      packages:
+        - "express"
+        - "mongoose"
+      aptPackages:
+        - curl
+      installCommand: "npm install"
+      startCommand: "npm start"
+      ports:
+        - 3002
+
+  mongodb:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/mongodb-init.js"
+    imageUrl: "https://example.com/mongodb.png"
+    image: mongo:7
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - database-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "mongod"
+      ports:
+        - 27017
+
+  redis:
+    type: Cache
+    order: 4
+    serviceUrl: "https://example.com/redis-config.conf"
+    imageUrl: "https://example.com/redis.png"
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - cache-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "redis-server"
+      ports:
+        - 6379
+
+volumes:
+  mongodb-data:
+
+networks:
+  gateway-tier: {}
+  services-tier: {}
+  database-tier: {}
+  cache-tier: {}
