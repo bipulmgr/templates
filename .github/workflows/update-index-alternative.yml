@@ -1,4 +1,4 @@
-name: Update Template Index
+name: Update Template Index (Alternative)
 
 on:
   push:
@@ -6,10 +6,11 @@ on:
     paths:
       - 'templates/*.yml'
       - 'templates/*.yaml'
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-index:
@@ -126,11 +127,20 @@ jobs:
           echo "No changes to index.json"
         fi
 
-    - name: Commit and push changes
+    - name: Create Pull Request
       if: steps.verify-changed-files.outputs.changed == 'true'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add index.json
-        git commit -m "Auto-update index.json from template changes"
-        git push origin HEAD:main
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Auto-update index.json from template changes"
+        title: "Auto-update index.json from template changes"
+        body: |
+          This PR automatically updates the index.json file based on changes to template files.
+          
+          **Changes:**
+          - Updated index.json with latest template metadata
+          
+          **Generated from templates:**
+          ${{ steps.verify-changed-files.outputs.changed }}
+        branch: auto-update-index
+        delete-branch: true
