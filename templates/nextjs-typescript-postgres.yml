@@ -1,0 +1,92 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "Next.js TypeScript PostgreSQL Stack"
+description: "Modern React application with Next.js, TypeScript, and PostgreSQL database."
+techstacks:
+  - name: Next.js
+    iconUrl: "https://cdn.simpleicons.org/nextdotjs"
+  - name: TypeScript
+    iconUrl: "https://cdn.simpleicons.org/typescript"
+  - name: PostgreSQL
+    iconUrl: "https://cdn.simpleicons.org/postgresql"
+  - name: Prisma
+    iconUrl: "https://cdn.simpleicons.org/prisma"
+  - name: Tailwind CSS
+    iconUrl: "https://cdn.simpleicons.org/tailwindcss"
+iconUrl: "https://example.com/nextjs-typescript-postgres.png"
+sharedVariable:
+  NODE_ENV: "development"
+  DATABASE_URL: "postgresql://user:password@postgres:5432/nextjsdb"
+  NEXTAUTH_SECRET: "your-secret-key"
+
+services:
+  frontend:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/nextjs-app.zip"
+    iconUrl: "https://example.com/nextjs.png"
+    image: node:18-alpine
+    ports:
+      - "3000:3000"
+    networks:
+      - app-tier
+    buildConfig:
+      packages:
+        - "next"
+        - "react"
+        - "typescript"
+        - "@prisma/client"
+        - "tailwindcss"
+      aptPackages:
+        - curl
+      installCommand: "npm install"
+      startCommand: "npm run dev"
+      ports:
+        - 3000
+
+  postgres:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/postgres-init.sql"
+    iconUrl: "https://example.com/postgresql.png"
+    image: postgres:15
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nextjsdb
+    networks:
+      - app-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "postgres"
+      ports:
+        - 5432
+
+  redis:
+    type: Cache
+    order: 2
+    serviceUrl: "https://example.com/redis-config.conf"
+    iconUrl: "https://example.com/redis.png"
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "redis-server"
+      ports:
+        - 6379
+
+volumes:
+  postgres-data:
+
+networks:
+  app-tier: {}

@@ -1,0 +1,110 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "Django Python PostgreSQL Stack"
+description: "Python web application with Django framework and PostgreSQL database."
+techstacks:
+  - name: Python
+    iconUrl: "https://cdn.simpleicons.org/python"
+  - name: Django
+    iconUrl: "https://cdn.simpleicons.org/django"
+  - name: PostgreSQL
+    iconUrl: "https://cdn.simpleicons.org/postgresql"
+  - name: Redis
+    iconUrl: "https://cdn.simpleicons.org/redis"
+  - name: Celery
+    iconUrl: "https://cdn.simpleicons.org/celery"
+iconUrl: "https://example.com/django-python-postgres.png"
+sharedVariable:
+  DEBUG: "True"
+  SECRET_KEY: "your-secret-key-here"
+  ALLOWED_HOSTS: "localhost,127.0.0.1"
+
+services:
+  web:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/django-app.zip"
+    iconUrl: "https://example.com/django.png"
+    image: python:3.11-slim
+    ports:
+      - "8000:8000"
+    networks:
+      - app-tier
+    buildConfig:
+      packages:
+        - "Django"
+        - "psycopg2-binary"
+        - "celery"
+        - "redis"
+      aptPackages:
+        - curl
+        - gcc
+      installCommand: "pip install -r requirements.txt"
+      startCommand: "python manage.py runserver 0.0.0.0:8000"
+      ports:
+        - 8000
+
+  postgres:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/postgres-init.sql"
+    iconUrl: "https://example.com/postgresql.png"
+    image: postgres:15
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: django_db
+    networks:
+      - app-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "postgres"
+      ports:
+        - 5432
+
+  redis:
+    type: Cache
+    order: 2
+    serviceUrl: "https://example.com/redis-config.conf"
+    iconUrl: "https://example.com/redis.png"
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "redis-server"
+      ports:
+        - 6379
+
+  celery:
+    type: Application
+    order: 3
+    serviceUrl: "https://example.com/celery-worker.zip"
+    iconUrl: "https://example.com/celery.png"
+    image: python:3.11-slim
+    networks:
+      - app-tier
+    buildConfig:
+      packages:
+        - "celery"
+        - "redis"
+      aptPackages:
+        - curl
+      installCommand: "pip install -r requirements.txt"
+      startCommand: "celery -A myproject worker -l info"
+      ports: []
+
+volumes:
+  postgres-data:
+
+networks:
+  app-tier: {}

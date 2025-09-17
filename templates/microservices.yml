@@ -24,7 +24,7 @@ services:
     type: application
     order: 2
     serviceUrl: "https://example.com/auth-service.zip"
-    imageUrl: "https://example.com/nodejs.png"
+    iconUrl: "https://example.com/nodejs.png"
     image: node:18-alpine
     ports:
       - "3001:3001"
@@ -46,7 +46,7 @@ services:
     type: application
     order: 3
     serviceUrl: "https://example.com/user-service.zip"
-    imageUrl: "https://example.com/nodejs.png"
+    iconUrl: "https://example.com/nodejs.png"
     image: node:18-alpine
     ports:
       - "3002:3002"
@@ -67,7 +67,7 @@ services:
     type: database
     order: 0
     serviceUrl: "https://example.com/mongodb-init.js"
-    imageUrl: "https://example.com/mongodb.png"
+    iconUrl: "https://example.com/mongodb.png"
     image: mongo:7
     volumes:
       - mongodb-data:/data/db
@@ -88,7 +88,7 @@ services:
     type: database
     order: 4
     serviceUrl: "https://example.com/redis-config.conf"
-    imageUrl: "https://example.com/redis.png"
+    iconUrl: "https://example.com/redis.png"
     image: redis:7-alpine
     ports:
       - "6379:6379"

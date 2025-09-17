@@ -1,0 +1,91 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "Laravel PHP MySQL Stack"
+description: "Traditional PHP web application with Laravel framework and MySQL database."
+techstacks:
+  - name: PHP
+    iconUrl: "https://cdn.simpleicons.org/php"
+  - name: Laravel
+    iconUrl: "https://cdn.simpleicons.org/laravel"
+  - name: MySQL
+    iconUrl: "https://cdn.simpleicons.org/mysql"
+  - name: Nginx
+    iconUrl: "https://cdn.simpleicons.org/nginx"
+  - name: Composer
+    iconUrl: "https://cdn.simpleicons.org/composer"
+iconUrl: "https://example.com/laravel-php-mysql.png"
+sharedVariable:
+  APP_ENV: "local"
+  APP_DEBUG: "true"
+  DB_CONNECTION: "mysql"
+
+services:
+  web:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/laravel-app.zip"
+    iconUrl: "https://example.com/laravel.png"
+    image: php:8.2-fpm
+    ports:
+      - "8000:8000"
+    networks:
+      - web-tier
+    buildConfig:
+      packages:
+        - "laravel/framework"
+        - "laravel/sanctum"
+      aptPackages:
+        - curl
+        - git
+      installCommand: "composer install"
+      startCommand: "php artisan serve --host=0.0.0.0"
+      ports:
+        - 8000
+
+  nginx:
+    type: Gateway
+    order: 2
+    serviceUrl: "https://example.com/nginx-config.conf"
+    iconUrl: "https://example.com/nginx.png"
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    networks:
+      - web-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "nginx -g 'daemon off;'"
+      ports:
+        - 80
+
+  mysql:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/mysql-init.sql"
+    iconUrl: "https://example.com/mysql.png"
+    image: mysql:8.0
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: password
+    networks:
+      - web-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "mysqld"
+      ports:
+        - 3306
+
+volumes:
+  mysql-data:
+
+networks:
+  web-tier: {}

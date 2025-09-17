@@ -1,0 +1,94 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "React Node.js MongoDB Stack"
+description: "Modern web application with React frontend, Node.js backend, and MongoDB database."
+techstacks:
+  - name: React
+    iconUrl: "https://cdn.simpleicons.org/react"
+  - name: Node.js
+    iconUrl: "https://cdn.simpleicons.org/nodedotjs"
+  - name: Express
+    iconUrl: "https://cdn.simpleicons.org/express"
+  - name: MongoDB
+    iconUrl: "https://cdn.simpleicons.org/mongodb"
+  - name: Docker
+    iconUrl: "https://cdn.simpleicons.org/docker"
+iconUrl: "https://example.com/react-node-mongodb.png"
+sharedVariable:
+  NODE_ENV: "development"
+  PORT: "3000"
+
+services:
+  frontend:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/react-frontend.zip"
+    iconUrl: "https://example.com/react.png"
+    image: node:18-alpine
+    ports:
+      - "3000:3000"
+    networks:
+      - frontend-tier
+    buildConfig:
+      packages:
+        - "react"
+        - "react-dom"
+        - "vite"
+      aptPackages:
+        - curl
+      installCommand: "npm install"
+      startCommand: "npm run dev"
+      ports:
+        - 3000
+
+  backend:
+    type: Application
+    order: 2
+    serviceUrl: "https://example.com/node-backend.zip"
+    iconUrl: "https://example.com/nodejs.png"
+    image: node:18-alpine
+    ports:
+      - "5000:5000"
+    networks:
+      - backend-tier
+    buildConfig:
+      packages:
+        - "express"
+        - "mongoose"
+        - "cors"
+        - "dotenv"
+      aptPackages:
+        - curl
+      installCommand: "npm install"
+      startCommand: "npm start"
+      ports:
+        - 5000
+
+  mongodb:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/mongodb-init.js"
+    iconUrl: "https://example.com/mongodb.png"
+    image: mongo:7
+    volumes:
+      - mongodb-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - backend-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "mongod"
+      ports:
+        - 27017
+
+volumes:
+  mongodb-data:
+
+networks:
+  frontend-tier: {}
+  backend-tier: {}

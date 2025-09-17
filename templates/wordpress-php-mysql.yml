@@ -1,0 +1,91 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "WordPress PHP MySQL Stack"
+description: "Popular CMS platform with WordPress, PHP, and MySQL database."
+iconUrl: "https://example.com/wordpress-php-mysql.png"
+sharedVariable:
+  WORDPRESS_DB_HOST: "mysql:3306"
+  WORDPRESS_DB_NAME: "wordpress"
+  WORDPRESS_DB_USER: "wordpress"
+  WORDPRESS_DB_PASSWORD: "wordpress"
+
+services:
+  wordpress:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/wordpress-theme.zip"
+    iconUrl: "https://example.com/wordpress.png"
+    image: wordpress:6.4-php8.2-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - wordpress-data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    networks:
+      - web-tier
+    buildConfig:
+      packages:
+        - "wordpress"
+      aptPackages:
+        - curl
+      installCommand: ""
+      startCommand: "apache2-foreground"
+      ports:
+        - 80
+
+  mysql:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/mysql-init.sql"
+    iconUrl: "https://example.com/mysql.png"
+    image: mysql:8.0
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - web-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "mysqld"
+      ports:
+        - 3306
+
+  phpmyadmin:
+    type: Application
+    order: 2
+    serviceUrl: "https://example.com/phpmyadmin-config.php"
+    iconUrl: "https://example.com/phpmyadmin.png"
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+    networks:
+      - web-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "apache2-foreground"
+      ports:
+        - 80
+
+volumes:
+  wordpress-data:
+  mysql-data:
+
+networks:
+  web-tier: {}

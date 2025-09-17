@@ -1,0 +1,74 @@
+version: "3.9"
+
+# 🔹 Main group metadata
+name: "Spring Boot Java MySQL Stack"
+description: "Enterprise Java application with Spring Boot framework and MySQL database."
+techstacks:
+  - name: Java
+    iconUrl: "https://cdn.simpleicons.org/openjdk"
+  - name: Spring Boot
+    iconUrl: "https://cdn.simpleicons.org/springboot"
+  - name: MySQL
+    iconUrl: "https://cdn.simpleicons.org/mysql"
+  - name: Maven
+    iconUrl: "https://cdn.simpleicons.org/apachemaven"
+  - name: Docker
+    iconUrl: "https://cdn.simpleicons.org/docker"
+iconUrl: "https://example.com/spring-boot-java-mysql.png"
+sharedVariable:
+  SPRING_PROFILES_ACTIVE: "dev"
+  SERVER_PORT: "8080"
+  SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/springdb"
+
+services:
+  app:
+    type: Application
+    order: 1
+    serviceUrl: "https://example.com/spring-boot-app.zip"
+    iconUrl: "https://example.com/spring-boot.png"
+    image: openjdk:17-jdk-slim
+    ports:
+      - "8080:8080"
+    networks:
+      - app-tier
+    buildConfig:
+      packages:
+        - "spring-boot-starter-web"
+        - "spring-boot-starter-data-jpa"
+        - "mysql-connector-java"
+      aptPackages:
+        - curl
+        - maven
+      installCommand: "mvn clean install"
+      startCommand: "java -jar target/app.jar"
+      ports:
+        - 8080
+
+  mysql:
+    type: Database
+    order: 0
+    serviceUrl: "https://example.com/mysql-init.sql"
+    iconUrl: "https://example.com/mysql.png"
+    image: mysql:8.0
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: springdb
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: springpass
+    networks:
+      - app-tier
+    buildConfig:
+      packages: []
+      aptPackages: []
+      installCommand: ""
+      startCommand: "mysqld"
+      ports:
+        - 3306
+
+volumes:
+  mysql-data:
+
+networks:
+  app-tier: {}
