@@ -16,11 +16,16 @@ sharedVariable:
 services:
   employee-info-app:
     type: application
-    order: 1
+    order: 3
     serviceUrl: "https://github.com/sursatech/employee-info-app.git"
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+    dependsOn:
+      - employee-info-api
     ports:
       - "3000:3000"
+    environment:
+      API_URL=${domain_url_employee-info-api}
+      APP_URL=${domain_url_employee-info-app}
     buildConfig:
       packages:
         - "nodejs"
@@ -34,6 +39,13 @@ services:
     order: 2
     serviceUrl: "https://github.com/sursatech/employee-info-api.git"
     iconUrl: ""
+    dependsOn:
+      - production-db
+    environment:
+      DATABASE_URL=${connection_string_production-db}
+      CONNECTION_STRING="Server=${env_production-db_POSTGRES_HOST};Database=tmis;User=${env_production-db_POSTGRES_USER};Password=${env_production-db_POSTGRES_PASSWORD};Convert Zero Datetime=True;"
+      API_URL=${domain_url_employee-info-api}
+      APP_URL=${domain_url_employee-info-app}
     buildConfig:
       packages:
         - "nodejs"
@@ -44,7 +56,7 @@ services:
 
   production-db:
     type: database
-    order: 3
+    order: 1
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     ports:
@@ -54,7 +66,7 @@ services:
     environment:
       - DB_TYPE=postgres
       - DB_VERSION=16
-      - POSTGRES_HOST=localhost
+      - POSTGRES_HOST=${host_production-db}
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_PORT=5432
