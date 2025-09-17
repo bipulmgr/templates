@@ -6,35 +6,10 @@ A curated collection of Docker Compose template files with automated index gener
 
 ```
 /templates/
-   fullstack-starter.yml
-   microservices.yml
-   react-node-mongodb.yml
-   vue-nuxt-postgres.yml
-   laravel-php-mysql.yml
-   django-python-postgres.yml
-   spring-boot-java-mysql.yml
-   wordpress-php-mysql.yml
-   nextjs-typescript-postgres.yml
+   employee-app-starter-pack.yml
    ...
 index.json (auto-generated)
 ```
-
-## 🚀 Quick Start
-
-1. **Browse Templates**: Check the `index.json` file for available templates
-2. **Use a Template**: Download and run any template:
-
-```bash
-# Example: Fullstack Starter
-docker-compose -f templates/fullstack-starter.yml up
-
-# Example: Microservices Architecture  
-docker-compose -f templates/microservices.yml up
-
-# Example: React Node.js MongoDB Stack
-docker-compose -f templates/react-node-mongodb.yml up
-```
-
 ## 📋 Custom Template Schema
 
 Our templates extend the standard Docker Compose format with additional metadata fields that our application requires:
@@ -137,22 +112,6 @@ The `index.json` file is **automatically generated** and updated via GitHub Acti
 - **Update `index.json`** with your template details
 - **No manual intervention required!**
 
-### Required Fields for Our Application
-
-#### Template Level:
-- ✅ `name` - Template display name
-- ✅ `description` - Brief description
-- ✅ `techstacks` - Array of technology objects with `name` and `iconUrl`
-- ✅ `iconUrl` - Main template icon URL
-- ✅ `sharedVariable` - Shared environment variables
-
-#### Service Level:
-- ✅ `type` - Service type (Application, Database, Cache, Gateway)
-- ✅ `order` - Display order in UI
-- ✅ `serviceUrl` - Download URL for service code
-- ✅ `iconUrl` - Service-specific icon URL
-- ✅ `buildConfig` - Build configuration with packages, commands, and ports
-
 ### Example Template Structure
 
 ```yaml
@@ -231,22 +190,3 @@ Our templates include these **additional fields** that standard Docker Compose d
 ## 📊 Available Templates
 
 Check `index.json` for the complete list of available templates with their metadata. The file is automatically updated whenever templates are added or modified.
-
-## 🤝 Contributing
-
-1. **Fork the repository**
-2. **Add your template** to `/templates/` directory as a `.yml` file
-3. **Follow our custom schema** with all required fields
-4. **Submit a pull request**
-5. **GitHub Actions will automatically update** `index.json` upon merge
-
-## ⚠️ Important Notes
-
-- **Never edit `index.json` manually** - it's auto-generated
-- **Always include all required fields** for our application to work properly
-- **Use the exact field names** as shown in the schema
-- **Test your template locally** before submitting a PR
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
