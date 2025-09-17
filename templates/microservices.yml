@@ -20,28 +20,8 @@ sharedVariable:
   LOG_LEVEL: "info"
 
 services:
-  api-gateway:
-    type: Gateway
-    order: 1
-    serviceUrl: "https://example.com/api-gateway.zip"
-    imageUrl: "https://example.com/nginx.png"
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - gateway-tier
-    buildConfig:
-      packages: []
-      aptPackages: []
-      installCommand: ""
-      startCommand: "nginx -g 'daemon off;'"
-      ports:
-        - 80
-        - 443
-
   auth-service:
-    type: Application
+    type: application
     order: 2
     serviceUrl: "https://example.com/auth-service.zip"
     imageUrl: "https://example.com/nodejs.png"
@@ -63,7 +43,7 @@ services:
         - 3001
 
   user-service:
-    type: Application
+    type: application
     order: 3
     serviceUrl: "https://example.com/user-service.zip"
     imageUrl: "https://example.com/nodejs.png"
@@ -84,7 +64,7 @@ services:
         - 3002
 
   mongodb:
-    type: Database
+    type: database
     order: 0
     serviceUrl: "https://example.com/mongodb-init.js"
     imageUrl: "https://example.com/mongodb.png"
@@ -105,7 +85,7 @@ services:
         - 27017
 
   redis:
-    type: Cache
+    type: database
     order: 4
     serviceUrl: "https://example.com/redis-config.conf"
     imageUrl: "https://example.com/redis.png"
