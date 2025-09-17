@@ -1,5 +1,39 @@
 [
   {
+    "name": "Django Python PostgreSQL Stack",
+    "techstacks": [
+      {
+        "name": "Python",
+        "iconUrl": "https://cdn.simpleicons.org/python"
+      },
+      {
+        "name": "Django",
+        "iconUrl": "https://cdn.simpleicons.org/django"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconUrl": "https://cdn.simpleicons.org/postgresql"
+      },
+      {
+        "name": "Redis",
+        "iconUrl": "https://cdn.simpleicons.org/redis"
+      },
+      {
+        "name": "Celery",
+        "iconUrl": "https://cdn.simpleicons.org/celery"
+      }
+    ],
+    "description": "Python web application with Django framework and PostgreSQL database.",
+    "iconUrl": "https://example.com/django-python-postgres.png",
+    "services": [
+      "web",
+      "postgres",
+      "redis",
+      "celery"
+    ],
+    "filename": "django-python-postgres.yml"
+  },
+  {
     "name": "Employee Management System",
     "techstacks": [
       {
@@ -19,6 +53,39 @@
       "production-db"
     ],
     "filename": "fullstack-starter.yml"
+  },
+  {
+    "name": "Laravel PHP MySQL Stack",
+    "techstacks": [
+      {
+        "name": "PHP",
+        "iconUrl": "https://cdn.simpleicons.org/php"
+      },
+      {
+        "name": "Laravel",
+        "iconUrl": "https://cdn.simpleicons.org/laravel"
+      },
+      {
+        "name": "MySQL",
+        "iconUrl": "https://cdn.simpleicons.org/mysql"
+      },
+      {
+        "name": "Nginx",
+        "iconUrl": "https://cdn.simpleicons.org/nginx"
+      },
+      {
+        "name": "Composer",
+        "iconUrl": "https://cdn.simpleicons.org/composer"
+      }
+    ],
+    "description": "Traditional PHP web application with Laravel framework and MySQL database.",
+    "iconUrl": "https://example.com/laravel-php-mysql.png",
+    "services": [
+      "web",
+      "nginx",
+      "mysql"
+    ],
+    "filename": "laravel-php-mysql.yml"
   },
   {
     "name": "Microservices Architecture",
@@ -53,5 +120,148 @@
       "redis"
     ],
     "filename": "microservices.yml"
+  },
+  {
+    "name": "Next.js TypeScript PostgreSQL Stack",
+    "techstacks": [
+      {
+        "name": "Next.js",
+        "iconUrl": "https://cdn.simpleicons.org/nextdotjs"
+      },
+      {
+        "name": "TypeScript",
+        "iconUrl": "https://cdn.simpleicons.org/typescript"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconUrl": "https://cdn.simpleicons.org/postgresql"
+      },
+      {
+        "name": "Prisma",
+        "iconUrl": "https://cdn.simpleicons.org/prisma"
+      },
+      {
+        "name": "Tailwind CSS",
+        "iconUrl": "https://cdn.simpleicons.org/tailwindcss"
+      }
+    ],
+    "description": "Modern React application with Next.js, TypeScript, and PostgreSQL database.",
+    "iconUrl": "https://example.com/nextjs-typescript-postgres.png",
+    "services": [
+      "frontend",
+      "postgres",
+      "redis"
+    ],
+    "filename": "nextjs-typescript-postgres.yml"
+  },
+  {
+    "name": "React Node.js MongoDB Stack",
+    "techstacks": [
+      {
+        "name": "React",
+        "iconUrl": "https://cdn.simpleicons.org/react"
+      },
+      {
+        "name": "Node.js",
+        "iconUrl": "https://cdn.simpleicons.org/nodedotjs"
+      },
+      {
+        "name": "Express",
+        "iconUrl": "https://cdn.simpleicons.org/express"
+      },
+      {
+        "name": "MongoDB",
+        "iconUrl": "https://cdn.simpleicons.org/mongodb"
+      },
+      {
+        "name": "Docker",
+        "iconUrl": "https://cdn.simpleicons.org/docker"
+      }
+    ],
+    "description": "Modern web application with React frontend, Node.js backend, and MongoDB database.",
+    "iconUrl": "https://example.com/react-node-mongodb.png",
+    "services": [
+      "frontend",
+      "backend",
+      "mongodb"
+    ],
+    "filename": "react-node-mongodb.yml"
+  },
+  {
+    "name": "Spring Boot Java MySQL Stack",
+    "techstacks": [
+      {
+        "name": "Java",
+        "iconUrl": "https://cdn.simpleicons.org/openjdk"
+      },
+      {
+        "name": "Spring Boot",
+        "iconUrl": "https://cdn.simpleicons.org/springboot"
+      },
+      {
+        "name": "MySQL",
+        "iconUrl": "https://cdn.simpleicons.org/mysql"
+      },
+      {
+        "name": "Maven",
+        "iconUrl": "https://cdn.simpleicons.org/apachemaven"
+      },
+      {
+        "name": "Docker",
+        "iconUrl": "https://cdn.simpleicons.org/docker"
+      }
+    ],
+    "description": "Enterprise Java application with Spring Boot framework and MySQL database.",
+    "iconUrl": "https://example.com/spring-boot-java-mysql.png",
+    "services": [
+      "app",
+      "mysql"
+    ],
+    "filename": "spring-boot-java-mysql.yml"
+  },
+  {
+    "name": "Vue.js Nuxt PostgreSQL Stack",
+    "techstacks": [
+      {
+        "name": "Vue.js",
+        "iconUrl": "https://cdn.simpleicons.org/vuedotjs"
+      },
+      {
+        "name": "Nuxt.js",
+        "iconUrl": "https://cdn.simpleicons.org/nuxtdotjs"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconUrl": "https://cdn.simpleicons.org/postgresql"
+      },
+      {
+        "name": "Prisma",
+        "iconUrl": "https://cdn.simpleicons.org/prisma"
+      },
+      {
+        "name": "TypeScript",
+        "iconUrl": "https://cdn.simpleicons.org/typescript"
+      }
+    ],
+    "description": "Full-stack Vue.js application with Nuxt.js SSR and PostgreSQL database.",
+    "iconUrl": "https://example.com/vue-nuxt-postgres.png",
+    "services": [
+      "frontend",
+      "postgres",
+      "redis"
+    ],
+    "filename": "vue-nuxt-postgres.yml"
+  },
+  {
+    "name": "WordPress PHP MySQL Stack",
+    "techstacks": [],
+    "description": "Popular CMS platform with WordPress, PHP, and MySQL database.",
+    "iconUrl": "https://example.com/wordpress-php-mysql.png",
+    "services": [
+      "wordpress",
+      "mysql",
+      "phpmyadmin"
+    ],
+    "filename": "wordpress-php-mysql.yml"
   }
 ]
