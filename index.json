@@ -14,9 +14,9 @@
     "description": "Employee Management System with frontend, backend, and database.",
     "iconUrl": "https://ui-avatars.com/api/?name=Employee+Management+System",
     "services": [
-      "frontend",
-      "backend",
-      "database"
+      "employee-info-app",
+      "employee-info-api",
+      "production-db"
     ],
     "filename": "fullstack-starter.yml"
   },
@@ -47,7 +47,6 @@
     "description": "Complete microservices setup with API Gateway, Auth Service, and User Service.",
     "iconUrl": "https://ui-avatars.com/api/?name=Microservices+Architecture",
     "services": [
-      "api-gateway",
       "auth-service",
       "user-service",
       "mongodb",
