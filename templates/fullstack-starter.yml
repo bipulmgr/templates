@@ -24,8 +24,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      API_URL=${domain_url_employee-info-api}
-      APP_URL=${domain_url_employee-info-app}
+      API_URL=${domainUrl_employee-info-api}
+      APP_URL=${domainUrl_employee-info-app}
     buildConfig:
       packages:
         - "nodejs"
@@ -42,10 +42,10 @@ services:
     dependsOn:
       - production-db
     environment:
-      DATABASE_URL=${connection_string_production-db}
+      DATABASE_URL=${connectionString_production-db}
       CONNECTION_STRING="Server=${env_production-db_POSTGRES_HOST};Database=tmis;User=${env_production-db_POSTGRES_USER};Password=${env_production-db_POSTGRES_PASSWORD};Convert Zero Datetime=True;"
-      API_URL=${domain_url_employee-info-api}
-      APP_URL=${domain_url_employee-info-app}
+      API_URL=${domainUrl_employee-info-api}
+      APP_URL=${domainUrl_employee-info-app}
     buildConfig:
       packages:
         - "nodejs"
