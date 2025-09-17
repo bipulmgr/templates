@@ -18,7 +18,7 @@ services:
     type: application
     order: 1
     serviceUrl: "https://github.com/sursatech/employee-info-app.git"
-    iconUrl: "https://ui-avatars.com/api/?name=Frontend"
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
     ports:
       - "3000:3000"
     buildConfig:
@@ -33,7 +33,7 @@ services:
     type: application
     order: 2
     serviceUrl: "https://github.com/sursatech/employee-info-api.git"
-    iconUrl: "https://ui-avatars.com/api/?name=Backend"
+    iconUrl: ""
     buildConfig:
       packages:
         - "nodejs"
@@ -45,7 +45,7 @@ services:
   production-db:
     type: database
     order: 3
-    iconUrl: "https://ui-avatars.com/api/?name=Database"
+    iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     ports:
       - "5432:5432"
