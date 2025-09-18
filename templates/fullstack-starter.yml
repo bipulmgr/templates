@@ -43,7 +43,7 @@ services:
       - production-db
     environment:
       DATABASE_URL=${connectionString_production-db}
-      CONNECTION_STRING="Server=${env_production-db_POSTGRES_HOST};Database=tmis;User=${env_production-db_POSTGRES_USER};Password=${env_production-db_POSTGRES_PASSWORD};Convert Zero Datetime=True;"
+      CONNECTION_STRING="Server=${env_production-db:POSTGRES_HOST};Database=tmis;User=${env_production-db:POSTGRES_USER};Password=${env_production-db:POSTGRES_PASSWORD};Convert Zero Datetime=True;"
       API_URL=${domainUrl_employee-info-api}
       APP_URL=${domainUrl_employee-info-app}
     buildConfig:
