@@ -50,7 +50,7 @@ services:
       packages:
         - "nodejs"
       installCommand: "npm install"
-      startCommand: "npm run start"
+      startCommand: "npm run dev"
       ports:
         - 3000
 
