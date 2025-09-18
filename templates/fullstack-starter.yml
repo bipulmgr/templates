@@ -56,7 +56,7 @@ services:
 
   production-db:
     type: database
-    order: 2
+    order: 1
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     ports:
