@@ -28,7 +28,7 @@ services:
       APP_URL=${domainUrl_employee-info-app}
     buildConfig:
       packages:
-        - "nodejs"
+        - "nodejs@22"
       installCommand: "npm install"
       startCommand: "npm run start"
       ports:
@@ -48,7 +48,7 @@ services:
       APP_URL=${domainUrl_employee-info-app}
     buildConfig:
       packages:
-        - "nodejs"
+        - "nodejs@22"
       installCommand: "npm install"
       startCommand: "npm run dev"
       ports:
