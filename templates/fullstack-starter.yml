@@ -16,21 +16,19 @@ sharedVariable:
 services:
   employee-info-app:
     type: application
-    order: 3
+    order: 1
     serviceUrl: "https://github.com/sursatech/employee-info-app.git"
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-    dependsOn:
-      - employee-info-api
     ports:
       - "3000:3000"
     environment:
-      API_URL=${domainUrl_employee-info-api}
-      APP_URL=${domainUrl_employee-info-app}
+      - VITE_API_URL=${domainUrl_employee-info-api}
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=.sursakit.app
     buildConfig:
       packages:
-        - "nodejs@22"
+        - "nodejs"
       installCommand: "npm install"
-      startCommand: "npm run dev"
+      startCommand: "npm run dev -- --host"
       ports:
         - 3000
 
@@ -39,16 +37,11 @@ services:
     order: 2
     serviceUrl: "https://github.com/sursatech/employee-info-api.git"
     iconUrl: ""
-    dependsOn:
-      - production-db
     environment:
-      DATABASE_URL=${connectionString_production-db}
-      CONNECTION_STRING=Server=${env_production-db_POSTGRES_HOST};Database=tmis;User=${env_production-db_POSTGRES_USER};Password=${env_production-db_POSTGRES_PASSWORD};Convert Zero Datetime=True;
-      API_URL=${domainUrl_employee-info-api}
-      APP_URL=${domainUrl_employee-info-app}
+      - DATABASE_URL=${connectionString_production-db}
     buildConfig:
       packages:
-        - "nodejs@22"
+        - "nodejs"
       installCommand: "npm install && npm run prisma:generate && npm run prisma:migrate -- --name \"initial_setup\""
       startCommand: "npm run dev"
       ports:
@@ -56,7 +49,7 @@ services:
 
   production-db:
     type: database
-    order: 1
+    order: 3
     iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     image: ghcr.io/railwayapp-templates/postgres-ssl:16
     ports:
@@ -66,7 +59,7 @@ services:
     environment:
       - DB_TYPE=postgres
       - DB_VERSION=16
-      - POSTGRES_HOST=${host_production-db}
+      - POSTGRES_HOST=localhost
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_PORT=5432
