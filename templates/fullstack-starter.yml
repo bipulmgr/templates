@@ -26,7 +26,7 @@ services:
       - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=.sursakit.app
     buildConfig:
       packages:
-        - "nodejs"
+        - "node@22"
       installCommand: "npm install"
       startCommand: "npm run dev -- --host"
       ports:
@@ -41,7 +41,7 @@ services:
       - DATABASE_URL=${connectionString_production-db}
     buildConfig:
       packages:
-        - "nodejs"
+        - "node@22"
       installCommand: "npm install && npm run prisma:generate && npm run prisma:migrate -- --name \"initial_setup\""
       startCommand: "npm run dev"
       ports:
