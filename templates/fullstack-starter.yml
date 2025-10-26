@@ -30,7 +30,7 @@ services:
       packages:
         - "nodejs@22"
       installCommand: "npm install"
-      startCommand: "npm run start"
+      startCommand: "npm run dev"
       ports:
         - 3000
 
@@ -49,7 +49,7 @@ services:
     buildConfig:
       packages:
         - "nodejs@22"
-      installCommand: "npm install"
+      installCommand: "npm install && npm run prisma:generate && npm run prisma:migrate -- --name \"initial_setup\""
       startCommand: "npm run dev"
       ports:
         - 3000
